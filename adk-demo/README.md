@@ -1,3 +1,5 @@
+# Instructions to set up the demo in Vertex AI Workbench
+
 1. Log in to GCP using a web browser.
 
 2. Type “Workbench” in the search field and click on the result.

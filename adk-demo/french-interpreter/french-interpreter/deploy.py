@@ -18,6 +18,7 @@ vertexai.init(
 )
 
 remote_app = agent_engines.create(
+    display_name="French Interpreter",
     agent_engine=root_agent,
     requirements=[
         "google-cloud-aiplatform[adk,agent_engines]"   
@@ -36,3 +37,5 @@ for event in remote_app.stream_query(
     message=message,
 ):
     print(event)
+
+remote_app.delete(force=True)

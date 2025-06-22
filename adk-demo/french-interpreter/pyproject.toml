@@ -1,0 +1,23 @@
+[project]
+name = "french-interpreter"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "gergely.csonde",email = "gergely.csonde@aliz.ai"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-adk (>=1.4.2,<2.0.0)",
+    "click (>=8.2.1,<9.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "asyncio (>=3.4.3,<4.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "french_interpreter", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -33,8 +33,10 @@ sudo ln -sf ${INSTALL_PREFIX}/bin/pip3.12 ${INSTALL_PREFIX}//bin/pip3
 curl -sSL https://install.python-poetry.org | python3.12 -
 export PATH="$HOME/.local/bin:$PATH"
 
+pip install --upgrade google-adk=="1.4.2"
+
 # === Step 5: Clone the repo ===
 cd
 git clone https://github.com/google/adk-samples.git
 cd adk-samples
-git reset --hard ea2288c
+git reset --hard 5465f64

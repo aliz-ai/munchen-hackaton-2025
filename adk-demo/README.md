@@ -1,4 +1,17 @@
-# Instructions to set up the demo in Vertex AI Workbench
+## If you have a computer with a linux terminal and a default python 3.12 env, and poetry installed
+
+1. Install ADK in the python 3.12 env
+    ```
+    pip install google-adk==1.4.2
+    ```
+2. Clone the the ADK samples repo to some appropriate location
+    ```
+    git clone https://github.com/google/adk-samples.git
+    cd adk-samples
+    git reset --hard 5465f64
+    ```
+
+## If you don't have the above installed on your computer
 
 1. Log in to GCP using a web browser.
 
@@ -16,16 +29,18 @@
 
 8. Once the instance starts, click **“Open JupyterLab”** next to its name.
 
-9. Download the `setup.sh` file from your this repo.
+9. Open a new terminal window in JupyterLab.
 
-10. Upload `setup.sh` to the starting directory (Jupyter home) in the JupyterLab window.
-
-11. Open a new terminal window in JupyterLab.
-
-12. Source the setup script:
-    ```bash
-    . setup.sh
+10. Clone the following repository:
     ```
+    ```
+
+11. Source the setup script, this will set up the python environment, install adk and clone the adk-samples repository:
+    ```bash
+    . munchen-hackathon-2025/adk-demo/setup.sh
+    ```
+
+12. At this point you can decide what to do, try to create a new agent, or check out the academic-research sample agent. The following assumes you picked the latter, for creating a new agent, see below. As for the samples the other ones can be tested in a similar fashion, but may not work as they require additional GCP resource setup. The hackaton demo agents should be working though. 
 
 13. Navigate to the selected demo directory:
     ```bash
@@ -44,7 +59,8 @@
     poetry install
     ```
 
-16. Run the demo server:
+16. When you run the demo server, it searches through the subdirectories of the current directory, or the directory specified in the command, and parses any agent it can find, and only those it can find in the immediate subdirectories.
+To Run the demo server:
     ```bash
     poetry run adk web --host 0.0.0.0
     ```
@@ -69,3 +85,27 @@
     ```
     http://localhost:8000
     ```
+    
+## Creating a new agent
+1. In general it is recommended to create a new python environment for every new project, however in this case for simplicity let's just use the default env.
+```
+adk create <agent_name> --model gemini-2.5-pro
+```
+2. For the questions:
+- pick Vertex AI
+- specify the provided GCP project
+- set region as us-central1
+
+3. Check the generated files, you need to edit the agent.py. If your agent needs additional packages make sure you install them.
+
+4. The agent can be tested in a similar fashion as the academic-research assistant above (see 16), except that since we didn't use poetry to create a virtual environment, the default environtment has to be used, so simply run the web UI with
+```
+adk web --host 0.0.0.0
+```
+
+## Links
+ADK intro
+https://google.github.io/adk-docs/
+
+ADK API doc
+https://google.github.io/adk-docs/api-reference/python/google-adk.html
